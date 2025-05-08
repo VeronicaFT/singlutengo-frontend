@@ -1,0 +1,26 @@
+<div class="home">
+  <!-- SECCIÓN DEL BUSCADOR -->
+  <section class="home__search">
+    <!-- Etiqueta para el input -->
+    <label for="city" class="home__label">Ciudad:</label>
+
+    <!-- Campo de texto con variable local #cityInput -->
+    <input
+      id="city"
+      type="text"
+      class="home__input"
+      placeholder="Buscar ciudad..."
+      #cityInput
+    />
+
+    <!-- Botón que ejecuta el método al hacer clic -->
+    <button class="home__button" (click)="onSearchCity(cityInput.value)">
+      Buscar
+    </button>
+  </section>
+
+  <!-- SECCIÓN DEL MAPA -->
+  <section class="home__map">
+    <div id="map" class="home__map-container"></div>
+  </section>
+</div>

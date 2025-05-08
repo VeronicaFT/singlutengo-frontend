@@ -1,0 +1,28 @@
+<div class="admin">
+  <h2>Panel de Administración</h2>
+
+  <form (ngSubmit)="guardar()">
+    <input type="text" [(ngModel)]="nuevo.nombre" name="nombre" placeholder="Nombre" required />
+    <input type="text" [(ngModel)]="nuevo.ubicacion" name="ubicacion" placeholder="Ubicación" required />
+    <textarea [(ngModel)]="nuevo.descripcion" name="descripcion" placeholder="Descripción" required></textarea>
+    <button type="submit">
+      {{ modoEdicion ? 'Actualizar' : 'Guardar' }}
+    </button>
+  </form>
+
+  <h3>Establecimientos actuales</h3>
+  <ul>
+    <li *ngFor="let est of establecimientos">
+      <strong>{{ est.nombre }}</strong> - {{ est.ubicacion }}
+      <div class="botones">
+        <button class="btn-edit" (click)="editar(est)">Editar</button>
+        <button class="btn-delete" (click)="eliminar(est.id!)">Eliminar</button>
+      </div>
+    </li>
+  </ul>
+
+  <!-- Snackbar -->
+  <div *ngIf="mensaje" class="snackbar">
+    {{ mensaje }}
+  </div>
+</div>

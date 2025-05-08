@@ -1,0 +1,63 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e6faf1;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+    &__left, &__right {
+      font-size: 1.5rem;
+      color: #006a60;
+
+      &:hover i {
+        color: #f9b700; // dorado alegre
+      }
+      
+    }
+  
+    &__center {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+  
+    &__logo {
+      height: 100px;
+      width: auto;
+    }
+  
+    &__title {
+      font-size: 1.7rem;
+      font-weight: bold;
+      font-family: 'Segoe UI', sans-serif;
+    }
+  
+    &__title--green {
+      color: #006a60;
+    }
+  
+    &__title--yellow {
+      color: #f9c529;
+    }
+
+    .navbar__right {
+        font-size: 1.5rem;
+        color: #006a60;
+      
+        a {
+          color: inherit;
+          text-decoration: none;
+      
+          i {
+            transition: color 0.3s ease;
+          }
+      
+          &:hover i {
+            color: #f9b700; // dorado alegre
+          }
+        }
+      }
+      
+  }
+  

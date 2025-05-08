@@ -1,0 +1,65 @@
+// Contenedor general de la página de inicio
+.home {
+    display: flex; // Apila sus hijos en columna
+    flex-direction: column;
+    align-items: center; // Centra horizontalmente
+    padding: 2rem; // Separación interna
+  
+    // SECCIÓN DEL BUSCADOR
+    &__search {
+      display: flex; // Los elementos (label, input, botón) estarán en línea
+      align-items: center;
+      gap: 1rem; // Espacio entre ellos
+      margin-bottom: 2rem; // Separación con el mapa
+    }
+  
+    // Estilo del texto "Ciudad:"
+    &__label {
+      font-weight: bold;
+      font-size:large;
+      color: #006a60; // Verde del logo
+    }
+  
+    // Campo de texto para introducir la ciudad
+    &__input {
+      padding: 0.5rem 1rem;
+      border: 1px solid #ccc;
+      border-radius: 20px; // Bordes redondeados
+      outline: none; // Quita el borde azul al hacer clic
+      width: 200px; // Ancho fijo
+    }
+  
+    // Botón "Buscar"
+    &__button {
+      padding: 0.5rem 1.2rem;
+      background-color: #f9c529; // Amarillo del logo
+      color: #fff; // Texto blanco
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease; // Efecto suave al hacer hover
+    }
+  
+    // Efecto hover del botón
+    &__button:hover {
+      background-color: #e0ae1c; // Un amarillo un poco más oscuro
+    }
+  
+// SECCIÓN QUE CONTIENE EL MAPA REAL
+&__map {
+  width: 70%;
+  height: 450px;
+  border-radius: 12px;
+  overflow: hidden; // evita que el mapa se salga de los bordes redondeados
+  margin-top: 1rem;
+}
+
+// Estilo específico para el div del mapa de Leaflet
+&__map-container {
+  width: 100%;
+  height: 100%;
+}
+
+  }
+  
