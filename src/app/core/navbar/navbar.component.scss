@@ -1,63 +1,115 @@
+// Estilos principales de la barra de navegación superior
 .navbar {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e6faf1; // fondo verde claro, acorde al tema de la app
+  padding: 1rem 2rem;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); // sombra elegante
+
+  // Iconos izquierdo (menú) y derecho (usuario)
+  &__left,
+  &__right {
+    font-size: 1.5rem;
+    color: #006a60;
+    cursor: pointer;
+
+    // Efecto hover dorado para el ícono
+    &:hover i {
+      color: #f9b700;
+    }
+  }
+
+  // Contenedor del logo + nombre
+  &__center {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    background-color: #e6faf1;
-    padding: 1rem 2rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  
-    &__left, &__right {
-      font-size: 1.5rem;
-      color: #006a60;
+    gap: 0.8rem;
+  }
 
-      &:hover i {
-        color: #f9b700; // dorado alegre
+  // Imagen del logo
+  &__logo {
+    height: 100px;
+    width: auto;
+  }
+
+  // Título principal de la app (SinGluten&Go)
+  &__title {
+    font-size: 1.7rem;
+    font-weight: bold;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  // Parte verde del título (SinGluten)
+  &__title--green {
+    color: #006a60;
+  }
+
+  // Parte amarilla del título (&Go)
+  &__title--yellow {
+    color: #f9c529;
+  }
+
+  // Estilo específico del área de login (icono de usuario)
+  .navbar__right {
+    font-size: 1.5rem;
+    color: #006a60;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+
+      i {
+        transition: color 0.3s ease;
       }
-      
-    }
-  
-    &__center {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-    }
-  
-    &__logo {
-      height: 100px;
-      width: auto;
-    }
-  
-    &__title {
-      font-size: 1.7rem;
-      font-weight: bold;
-      font-family: 'Segoe UI', sans-serif;
-    }
-  
-    &__title--green {
-      color: #006a60;
-    }
-  
-    &__title--yellow {
-      color: #f9c529;
-    }
 
-    .navbar__right {
-        font-size: 1.5rem;
+      // Hover dorado en el icono
+      &:hover i {
+        color: #f9b700;
+      }
+    }
+  }
+}
+
+// Menú lateral desplegable (menú hamburguesa)
+.menu-lateral {
+  position: absolute;
+  top: 80px; // debajo de la navbar
+  left: 20px;
+  background-color: #eafaf6;
+  border-radius: 10px;
+  padding: 1rem;
+  width: 200px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: none; // oculto por defecto
+  z-index: 1000;
+
+  // Clase activa que muestra el menú cuando está abierto
+  &--abierto {
+    display: block;
+  }
+
+  // Lista de opciones
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin-bottom: 1rem;
+
+      a {
+        text-decoration: none;
         color: #006a60;
-      
-        a {
-          color: inherit;
-          text-decoration: none;
-      
-          i {
-            transition: color 0.3s ease;
-          }
-      
-          &:hover i {
-            color: #f9b700; // dorado alegre
-          }
+        font-weight: bold;
+        cursor: pointer;
+
+        // Efecto hover en amarillo
+        &:hover {
+          color: #f9c529;
         }
       }
-      
+    }
   }
-  
+}

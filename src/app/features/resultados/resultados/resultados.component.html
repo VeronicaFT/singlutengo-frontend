@@ -1,0 +1,35 @@
+<!-- Contenedor principal de la pantalla de resultados -->
+<div class="resultados">
+
+  <!-- 📋 Columna izquierda: listado de establecimientos -->
+  <div class="columna-izquierda">
+
+    <!-- Título con nombre de la ciudad buscada -->
+    <div class="titulo-box">
+      <h2>Establecimientos en "{{ ciudad }}"</h2>
+    </div>
+
+    <!-- Mensaje si no hay resultados -->
+    <div *ngIf="establecimientosFiltrados.length === 0">
+      <p>No se encontraron establecimientos en esta ciudad.</p>
+    </div>
+
+    <!-- Lista de resultados -->
+    <ul>
+      <!-- Se recorre la lista de establecimientos filtrados -->
+      <li *ngFor="let est of establecimientosFiltrados">
+        <h3>{{ est.nombre }}</h3>
+        <p>{{ est.descripcion }}</p>
+        <p><strong>Ubicación:</strong> {{ est.ubicacion }}</p>
+
+        <!-- Botón que redirige al detalle del establecimiento -->
+        <button [routerLink]="['/establecimiento', est.id]">Ver detalles</button>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 🗺️ Columna derecha: mapa interactivo con Leaflet -->
+  <div class="columna-derecha">
+    <div id="map" class="mapa"></div>
+  </div>
+</div>

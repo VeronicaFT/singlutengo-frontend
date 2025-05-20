@@ -1,23 +1,51 @@
+<!-- Barra de navegación superior -->
 <nav class="navbar">
-    <div class="navbar__left">
-      <i class="fa fa-bars"></i>
-    </div>
-  
-    <div class="navbar__center">
-      <!-- Imagen del logo -->
-      <img src="assets/logo-icon.png" alt="Logo SinGluten&Go" class="navbar__logo" />
-  
-      <!-- Título con colores -->
-      <span class="navbar__title">
-        <span class="navbar__title--green">SinGluten</span>
-        <span class="navbar__title--yellow">&Go</span>
-      </span>
-    </div>
-  
-    <div class="navbar__right">
-      <a routerLink="/login" title="Iniciar sesión">
-        <i class="fa fa-user"></i>
-      </a>
-    </div>
-  </nav>
-  
+  <!-- Botón del menú hamburguesa (izquierda) -->
+  <div class="navbar__left" (click)="toggleMenu()">
+    <i class="fa fa-bars"></i>
+  </div>
+
+  <!-- Centro de la barra: logo e identidad visual -->
+  <div class="navbar__center">
+    <!-- Logo de la aplicación -->
+    <img src="assets/logo-icon.png" alt="Logo SinGluten&Go" class="navbar__logo" />
+
+    <!-- Nombre estilizado del proyecto con colores -->
+    <span class="navbar__title">
+      <span class="navbar__title--green">SinGluten</span>
+      <span class="navbar__title--yellow">&Go</span>
+    </span>
+  </div>
+
+  <!-- Icono de usuario (derecha): enlace al login -->
+  <div class="navbar__right">
+    <a routerLink="/login" title="Iniciar sesión">
+      <i class="fa fa-user"></i>
+    </a>
+  </div>
+</nav>
+
+<!-- Menú lateral desplegable -->
+<nav class="menu-lateral" [class.menu-lateral--abierto]="menuAbierto">
+  <ul>
+    <!-- Enlace al inicio -->
+    <li>
+      <a routerLink="/" (click)="cerrarMenu()">Inicio</a>
+    </li>
+
+    <!-- Enlace a la página de consejos -->
+    <li>
+      <a routerLink="/consejos" (click)="cerrarMenu()">¿Qué es la celiaquía?</a>
+    </li>
+
+    <!-- Opción solo visible si el usuario está logueado y es administrador -->
+    <li *ngIf="usuarioConectado && esAdmin">
+      <a routerLink="/admin" (click)="cerrarMenu()">Panel de Administración</a>
+    </li>
+
+    <!-- Opción de cerrar sesión, visible solo si el usuario está logueado -->
+    <li *ngIf="usuarioConectado">
+      <a (click)="logout()">Cerrar sesión</a>
+    </li>
+  </ul>
+</nav>

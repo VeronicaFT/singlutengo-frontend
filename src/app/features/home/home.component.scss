@@ -1,65 +1,151 @@
-// Contenedor general de la página de inicio
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+:host {
+  font-family: 'Poppins', sans-serif;
+}
+
 .home {
-    display: flex; // Apila sus hijos en columna
-    flex-direction: column;
-    align-items: center; // Centra horizontalmente
-    padding: 2rem; // Separación interna
-  
-    // SECCIÓN DEL BUSCADOR
-    &__search {
-      display: flex; // Los elementos (label, input, botón) estarán en línea
-      align-items: center;
-      gap: 1rem; // Espacio entre ellos
-      margin-bottom: 2rem; // Separación con el mapa
-    }
-  
-    // Estilo del texto "Ciudad:"
-    &__label {
-      font-weight: bold;
-      font-size:large;
-      color: #006a60; // Verde del logo
-    }
-  
-    // Campo de texto para introducir la ciudad
-    &__input {
-      padding: 0.5rem 1rem;
-      border: 1px solid #ccc;
-      border-radius: 20px; // Bordes redondeados
-      outline: none; // Quita el borde azul al hacer clic
-      width: 200px; // Ancho fijo
-    }
-  
-    // Botón "Buscar"
-    &__button {
-      padding: 0.5rem 1.2rem;
-      background-color: #f9c529; // Amarillo del logo
-      color: #fff; // Texto blanco
-      border: none;
-      border-radius: 20px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: background-color 0.3s ease; // Efecto suave al hacer hover
-    }
-  
-    // Efecto hover del botón
-    &__button:hover {
-      background-color: #e0ae1c; // Un amarillo un poco más oscuro
-    }
-  
-// SECCIÓN QUE CONTIENE EL MAPA REAL
-&__map {
-  width: 70%;
-  height: 450px;
-  border-radius: 12px;
-  overflow: hidden; // evita que el mapa se salga de los bordes redondeados
-  margin-top: 1rem;
-}
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
 
-// Estilo específico para el div del mapa de Leaflet
-&__map-container {
+  //Fondo visual 
+  min-height: 100vh;
   width: 100%;
-  height: 100%;
+  padding: 2rem;
+  background-image: url('/assets/inicio-fondo.png');
+  background-size: cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-blend-mode: lighten;
+
+  // SECCIÓN DE BIENVENIDA
+  &__bienvenida {
+    text-align: center;
+    margin-bottom: 2rem;
+    background-color: rgba(255, 255, 255, 0.88);
+    padding: 2rem;
+    border-radius: 20px;
+    max-width: 800px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+
+    // Animación
+    animation: fadeSlideIn 1s ease forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  &__bienvenida-titulo {
+    font-size: 2rem;
+    color: #006a60;
+    margin-bottom: 0.5rem;
+  }
+
+  &__bienvenida-texto {
+    font-size: 1.1rem;
+    color: #333;
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  //SECCIÓN DEL BUSCADOR
+  &__search {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap; // Para que no se desborde en móvil
+    justify-content: center;
+  }
+
+  &__label {
+    font-weight: bold;
+    font-size: large;
+    color: #006a60;
+  }
+
+  &__input {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    outline: none;
+    width: 200px;
+  }
+
+  &__button {
+    padding: 0.5rem 1.2rem;
+    background-color: #f9c529;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #e0ae1c;
+    }
+  }
+
+  //SECCIÓN DEL MAPA
+  &__map {
+    width: 50%;
+    height: 450px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 1rem;
+    background-color: #fff; 
+    min-height: 450px; //fuerza la altura 
+  }
+
+  &__map-container {
+    width: 100%;
+    height: 100%;
+  }
+
+  //Estilos responsive para móviles y pantallas pequeñas
+  @media screen and (max-width: 768px) {
+    &__bienvenida {
+      padding: 1.5rem;
+    }
+
+    &__bienvenida-titulo {
+      font-size: 1.6rem; // reducimos el título
+    }
+
+    &__bienvenida-texto {
+      font-size: 1rem;
+    }
+
+    &__search {
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    &__input {
+      width: 100%;
+      max-width: 300px;
+    }
+
+    &__button {
+      width: 100%;
+      max-width: 200px;
+    }
+
+    &__map {
+      width: 100%; // El mapa ocupa toda la pantalla
+      height: 350px; // Altura reducida para móvil
+    }
+  }
 }
 
+// Animación fade + slide
+@keyframes fadeSlideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
+}

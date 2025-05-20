@@ -1,0 +1,102 @@
+// Estilo principal del contenedor de resultados (pantalla dividida en dos columnas)
+.resultados {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+
+  // Fondo visual con imagen decorativa
+  background-image: url('/assets/resultados-fondo.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #eafaf6; // color de respaldo si no carga la imagen
+  min-height: 100vh;
+
+  // Columna izquierda: lista de establecimientos
+  .columna-izquierda {
+    width: 100%;
+    max-width: 500px;
+
+    h2 {
+      color: #000000;
+      margin-bottom: 1.5rem;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); // sombra para contraste sobre fondo
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+
+      li {
+        background: white;
+        border: 1px solid #ddd;
+        border-left: 5px solid #00a08b;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-radius: 8px;
+      }
+
+      button {
+        background-color: #f9c529;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: #e0ae1c;
+        }
+      }
+    }
+  }
+
+  // Columna derecha: contenedor del mapa Leaflet
+  .columna-derecha {
+    flex: 1;
+    min-width: 400px;
+  }
+
+  // Estilos del mapa
+  .mapa {
+    height: 800px;
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  //Estilos responsive para móviles y tablets
+  @media screen and (max-width: 768px) {
+    flex-direction: column; // Apilar columnas
+
+    .columna-izquierda,
+    .columna-derecha {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .mapa {
+      height: 400px; // Reducimos altura para móvil
+    }
+
+    padding: 1rem; // Menos margen lateral
+    gap: 1.5rem;
+  }
+}
+
+// Caja decorativa para el título
+.titulo-box {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 0.4rem 1.2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}

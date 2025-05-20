@@ -1,0 +1,101 @@
+// Estilos de la página de login y registro
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 1rem;
+  font-family: 'Segoe UI', sans-serif;
+  background-image: url('/assets/login-fondo.png'); // fondo decorativo
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  // Estilo aplicado cuando se quiere diseño horizontal (login y registro lado a lado)
+  &.horizontal {
+    flex-direction: row;
+    justify-content: center;
+    gap: 3rem;
+
+    .login-box,
+    .register-box {
+      margin-bottom: 0;
+    }
+  }
+
+  // Caja visual de login y de registro
+  .login-box,
+  .register-box {
+    background-color: white;
+    border-radius: 12px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+    // Título centrado
+    h2 {
+      text-align: center;
+      color: #006a60;
+      margin-bottom: 1.5rem;
+    }
+
+    // Estilos del formulario (login o registro)
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      // Etiquetas de campos
+      label {
+        font-weight: bold;
+        color: #006a60;
+      }
+
+      // Campos de entrada
+      input {
+        padding: 0.6rem 1rem;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        outline: none;
+
+        &:focus {
+          border-color: #00a08b;
+        }
+      }
+
+      // Botón de enviar formulario
+      button {
+        background-color: #f9c529;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 0.8rem;
+        font-weight: bold;
+        font-size: large;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: #e0ae1c;
+        }
+      }
+    }
+  }
+
+  // Estilos responsive para pantallas pequeñas (móviles, tablets en vertical)
+  @media screen and (max-width: 768px) {
+    // Se desactiva el diseño horizontal y se apilan los formularios
+    &.horizontal {
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem; // espacio entre login y registro
+
+      .login-box,
+      .register-box {
+        width: 90%; // ocupan casi todo el ancho disponible
+        margin-bottom: 0;
+      }
+    }
+  }
+}

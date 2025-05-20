@@ -1,0 +1,75 @@
+<!-- Solo se muestra si ya se cargó el establecimiento -->
+<div *ngIf="establecimiento; else cargando" class="detalle">
+
+  <!-- Caja visual con datos del establecimiento -->
+  <div class="detalle-contenido-visual">
+    <!-- Título y datos generales -->
+    <h2>{{ establecimiento.nombre }}</h2>
+    <p><strong>Ubicación:</strong> {{ establecimiento.ubicacion }}</p>
+    <p><strong>Descripción:</strong> {{ establecimiento.descripcion }}</p>
+    <p><strong>Valoración media:</strong> {{ establecimiento.valoracionMedia || 'Sin valoraciones aún' }}</p>
+
+    <!-- Contenido dividido en dos columnas: valoraciones + formulario -->
+    <div class="detalle-contenido">
+
+      <!-- 📍 Columna izquierda: Lista de valoraciones -->
+      <div class="valoraciones">
+        <h3>Comentarios de usuarios</h3>
+
+        <!-- Mensaje si no hay valoraciones -->
+        <div *ngIf="valoraciones.length === 0">
+          <p>No hay valoraciones aún.</p>
+        </div>
+
+        <!-- Lista de valoraciones si hay alguna -->
+        <ul *ngIf="valoraciones.length > 0">
+          <li *ngFor="let val of valoraciones">
+            <p>⭐ {{ val.puntuacion }} — "{{ val.comentario }}"</p>
+            <p class="autor">
+              <em>por {{ val.usuario.nombre }} el {{ val.fechaComentario }}</em>
+            </p>
+          </li>
+        </ul>
+      </div>
+
+      <!-- ✍️ Columna derecha: Formulario para añadir nueva valoración -->
+      <div class="nueva-valoracion">
+        <h3>¡Deja tu valoración!</h3>
+
+        <!-- Formulario vinculado a (ngSubmit) y a ngModel -->
+        <form (ngSubmit)="enviarValoracion()" #valoracionForm="ngForm">
+          <!-- Select de puntuación -->
+          <label for="puntuacion">Puntuación:</label>
+          <select
+            id="puntuacion"
+            [(ngModel)]="nuevaValoracion.puntuacion"
+            name="puntuacion"
+            required
+          >
+            <option value="" disabled selected>Selecciona una puntuación</option>
+            <option *ngFor="let i of [1,2,3,4,5]" [value]="i">{{ i }} ⭐</option>
+          </select>
+
+          <!-- Campo de comentario -->
+          <label for="comentario">Comentario:</label>
+          <textarea
+            id="comentario"
+            rows="4"
+            [(ngModel)]="nuevaValoracion.comentario"
+            name="comentario"
+            placeholder="Escribe tu opinión..."
+            required
+          ></textarea>
+
+          <!-- Botón de enviar -->
+          <button type="submit">Enviar valoración</button>
+        </form>
+      </div>
+    </div> <!-- Fin de detalle-contenido -->
+  </div> <!-- Fin de detalle-contenido-visual -->
+</div>
+
+<!-- Plantilla alternativa: se muestra mientras se cargan los datos -->
+<ng-template #cargando>
+  <p>Cargando datos del establecimiento...</p>
+</ng-template>

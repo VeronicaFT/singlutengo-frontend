@@ -1,0 +1,177 @@
+// Fuente principal utilizada en todo el componente
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+:host {
+  font-family: 'Poppins', sans-serif;
+}
+
+// Contenedor principal del detalle del establecimiento
+.detalle {
+  min-height: 100vh; // ocupa toda la altura de la pantalla
+  width: 100%;
+  padding: 2rem;
+
+  // Fondo con imagen decorativa
+  background-image: url('/assets/detalle-fondo.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-blend-mode: lighten;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  border-radius: 0;
+  box-shadow: none;
+}
+
+// Título del establecimiento
+h2 {
+  color: #006a60;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}
+
+// Párrafos de información general
+p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+
+// Contenedor dividido en dos columnas: valoraciones + formulario
+.detalle-contenido {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2.5rem;
+  flex-wrap: wrap;
+
+  //Columna izquierda: Lista de valoraciones
+  .valoraciones {
+    flex: 2;
+    min-width: 320px;
+
+    h3 {
+      color: #00a08b;
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        background: #eafaf6;
+        border: 1px solid #cceee6;
+        border-left: 6px solid #06b293;
+        padding: 1rem 1.2rem;
+        border-radius: 12px;
+        margin-bottom: 1.2rem;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+        transition: transform 0.2s ease;
+
+        &:hover {
+          transform: translateY(-3px); // efecto flotante
+        }
+
+        p {
+          margin: 0.3rem 0;
+        }
+
+        .autor {
+          font-size: 0.85rem;
+          color: #555;
+          margin-top: 0.5rem;
+        }
+      }
+    }
+  }
+
+  //Columna derecha: Formulario para nueva valoración
+  .nueva-valoracion {
+    flex: 1.2;
+    min-width: 280px;
+    background: #eafaf6;
+    padding: 1.8rem;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+    h3 {
+      color: #006a60;
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      label {
+        font-weight: bold;
+        color: #006a60;
+      }
+
+      select,
+      textarea {
+        padding: 0.7rem;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        font-family: 'Poppins', sans-serif;
+        font-size: 1rem;
+        transition: border-color 0.3s;
+
+        &:focus {
+          outline: none;
+          border-color: #00a08b;
+          box-shadow: 0 0 0 3px rgba(0, 160, 139, 0.1); // efecto glow
+        }
+      }
+
+      button {
+        align-self: start;
+        background-color: #f9c529;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        padding: 0.7rem 1.5rem;
+        font-weight: bold;
+        font-size: 1.05rem;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+        &:hover {
+          background-color: #e0ae1c;
+          transform: translateY(-2px);
+        }
+      }
+    }
+  }
+
+  // Estilos responsive para pantallas pequeñas
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+
+    .valoraciones,
+    .nueva-valoracion {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+}
+
+// Caja blanca que envuelve todo el contenido visual del detalle
+.detalle-contenido-visual {
+  background-color: rgba(255, 255, 255, 0.88);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  max-width: 1100px;
+  width: 100%;
+}
