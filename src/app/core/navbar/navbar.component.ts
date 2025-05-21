@@ -23,6 +23,9 @@ export class NavbarComponent implements OnInit {
   /** Indica si el usuario logueado es de tipo administrador */
   esAdmin = false;
 
+  /** Nombre del usuario conectado (si lo hay) */
+  nombreUsuario: string | null = null;
+
   constructor(private router: Router, private elementRef: ElementRef) {}
 
   /**
@@ -47,8 +50,10 @@ export class NavbarComponent implements OnInit {
    */
   comprobarSesion(): void {
     const tipo = localStorage.getItem('tipoUsuario');
+    const nombre = localStorage.getItem('nombreUsuario');
     this.usuarioConectado = !!tipo; // true si hay valor, false si es null
     this.esAdmin = tipo === 'admin';
+    this.nombreUsuario = nombre;
   }
 
   /**

@@ -15,7 +15,8 @@ export class GeocodingService {
    * @returns Un observable con las coordenadas devueltas por el servidor
    */
   getCoordinates(city: string): Observable<any> {
-    const url = `https://nominatim.openstreetmap.org/search?format=json&q=${city}`;
-    return this.http.get(url);
-  }
+  const url = `https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=es&q=${encodeURIComponent(city)}`;
+  return this.http.get(url); //countrycodes=es, para limitar los resultados a España.
+}
+
 }

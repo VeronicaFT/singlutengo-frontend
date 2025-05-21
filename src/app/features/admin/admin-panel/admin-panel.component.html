@@ -8,63 +8,54 @@
 
   <!-- Formulario para crear o editar un establecimiento -->
   <form (ngSubmit)="guardar()">
-    <!-- Campo para el nombre del establecimiento -->
     <input type="text" [(ngModel)]="nuevo.nombre" name="nombre" placeholder="Nombre" required />
-
-    <!-- Campo para la ubicación -->
     <input type="text" [(ngModel)]="nuevo.ubicacion" name="ubicacion" placeholder="Ubicación" required />
-
-    <!-- Campo para la descripción -->
     <textarea [(ngModel)]="nuevo.descripcion" name="descripcion" placeholder="Descripción" required></textarea>
-
-    <!-- Botón de guardar o actualizar -->
-    <button type="submit">
-      {{ modoEdicion ? 'Actualizar' : 'Guardar' }}
-    </button>
+    <button type="submit">{{ modoEdicion ? 'Actualizar' : 'Guardar' }}</button>
   </form>
 
-  <!-- Sección para mostrar establecimientos existentes -->
-  <div class="titulo-box">
-    <h3>Establecimientos actuales</h3>
-  </div>
+  <!-- Contenedor horizontal con dos columnas -->
+  <div class="admin-columns">
 
-  <!-- Lista de establecimientos con botones de acción -->
-  <ul class="establecimientos">
-    <li *ngFor="let est of establecimientos">
-      <strong>{{ est.nombre }}</strong> - {{ est.ubicacion }}
-
-      <div class="botones">
-        <button class="btn-edit" (click)="editar(est)">Editar</button>
-        <button class="btn-delete" (click)="eliminar(est.id!)">Eliminar</button>
+    <!-- Columna izquierda: Comentarios -->
+    <div class="admin-col">
+      <div class="titulo-box">
+        <h3>Comentarios de usuarios</h3>
       </div>
-    </li>
-  </ul>
+      <ul class="valoraciones">
+        <li *ngFor="let val of valoraciones">
+          <div class="contenido">
+            <p><strong>{{ val.usuario.nombre }}</strong> sobre <em>{{ val.establecimiento.nombre }}</em></p>
+            <p>"{{ val.comentario }}" - {{ val.puntuacion }} ⭐</p>
+          </div>
+          <div class="acciones">
+            <p class="fecha">{{ val.fechaComentario }}</p>
+            <button class="btn-delete" (click)="eliminarValoracion(val.id!)">Eliminar</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Columna derecha: Establecimientos -->
+    <div class="admin-col">
+      <div class="titulo-box">
+        <h3>Establecimientos actuales</h3>
+      </div>
+      <ul class="establecimientos">
+        <li *ngFor="let est of establecimientos">
+          <strong>{{ est.nombre }}</strong> - {{ est.ubicacion }}
+          <div class="botones">
+            <button class="btn-edit" (click)="editar(est)">Editar</button>
+            <button class="btn-delete" (click)="eliminar(est.id!)">Eliminar</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+  </div>
 
   <!-- Snackbar: mensaje flotante temporal -->
   <div *ngIf="mensaje" class="snackbar">
     {{ mensaje }}
   </div>
-
-  <!-- Sección de valoraciones -->
-  <div class="titulo-box">
-    <h3>Comentarios de usuarios</h3>
-  </div>
-
-  <!-- Lista de valoraciones con botón para eliminar -->
-  <ul class="valoraciones">
-    <li *ngFor="let val of valoraciones">
-      <div class="contenido">
-        <p>
-          <strong>{{ val.usuario.nombre }}</strong> sobre
-          <em>{{ val.establecimiento.nombre }}</em>
-        </p>
-        <p>"{{ val.comentario }}" - {{ val.puntuacion }} ⭐</p>
-      </div>
-
-      <div class="acciones">
-        <p class="fecha">{{ val.fechaComentario }}</p>
-        <button class="btn-delete" (click)="eliminarValoracion(val.id!)">Eliminar</button>
-      </div>
-    </li>
-  </ul>
 </div>

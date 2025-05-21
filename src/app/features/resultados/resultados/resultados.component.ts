@@ -75,6 +75,17 @@ export class ResultadosComponent implements OnInit {
       this.map.remove();
     }
 
+// 🔁 Corregir iconos de Leaflet para que los busque en /assets/leaflet/
+delete (L.Icon.Default.prototype as any)._getIconUrl;
+
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: '/assets/leaflet/marker-icon-2x.png',
+  iconUrl: '/assets/leaflet/marker-icon.png',
+  shadowUrl: '/assets/leaflet/marker-shadow.png'
+});
+
+
+
     // Crear nuevo mapa centrado en España
     this.map = L.map('map').setView([40.4168, -3.7038], 6);
 

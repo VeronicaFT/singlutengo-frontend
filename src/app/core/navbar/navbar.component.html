@@ -17,11 +17,18 @@
     </span>
   </div>
 
-  <!-- Icono de usuario (derecha): enlace al login -->
+  <!-- Icono de usuario y nombre del usuario conectado -->
   <div class="navbar__right">
     <a routerLink="/login" title="Iniciar sesión">
       <i class="fa fa-user"></i>
     </a>
+
+    <!-- Nombre visible solo si hay sesión -->
+    <div *ngIf="usuarioConectado && nombreUsuario" class="navbar__username">
+      Sesión iniciada por:<br/>
+       <strong>{{ nombreUsuario }}</strong>
+    </div>
+
   </div>
 </nav>
 

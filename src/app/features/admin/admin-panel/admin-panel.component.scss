@@ -223,3 +223,19 @@
     background-color: #008577;
   }
 }
+
+  // Contenedor horizontal para comentarios y establecimientos
+  .admin-columns {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+
+  // Cada columna ocupa hasta 600px
+  .admin-col {
+    flex: 1;
+    min-width: 300px;
+    max-width: 600px;
+  }
